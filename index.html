@@ -1,280 +1,350 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Есть одно предложение</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-* {
-  box-sizing: border-box;
-}
+  <title>Есть одно предложение</title>
 
-body {
-  margin: 0;
-  min-height: 100vh;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background: #f7f5f2;
-  color: #242424;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-}
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-.card {
-  width: 100%;
-  max-width: 520px;
-  background: white;
-  border-radius: 24px;
-  padding: 34px 26px;
-  box-shadow: 0 15px 45px rgba(0,0,0,.08);
-}
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: #f5f3f0;
+      color: #222;
+      font-family: Arial, sans-serif;
 
-.heart {
-  text-align: center;
-  font-size: 28px;
-  margin-bottom: 18px;
-}
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-.from {
-  text-align: center;
-  font-size: 14px;
-  color: #888;
-  margin-bottom: 8px;
-}
+      padding: 20px;
+    }
 
-h1 {
-  text-align: center;
-  font-size: 28px;
-  margin: 0 0 12px;
-}
+    .card {
+      width: 100%;
+      max-width: 500px;
 
-.subtitle {
-  text-align: center;
-  color: #777;
-  line-height: 1.5;
-  margin-bottom: 28px;
-}
+      background: white;
+      border-radius: 24px;
 
-label {
-  display: block;
-  font-size: 14px;
-  margin: 16px 0 7px;
-  color: #555;
-}
+      padding: 32px 24px;
 
-input,
-select,
-textarea {
-  width: 100%;
-  padding: 13px 14px;
-  border: 1px solid #ddd;
-  border-radius: 12px;
-  font-size: 15px;
-  background: #fff;
-  font-family: inherit;
-  outline: none;
-}
+      box-shadow: 0 15px 45px rgba(0, 0, 0, 0.08);
+    }
 
-input:focus,
-select:focus,
-textarea:focus {
-  border-color: #999;
-}
+    .heart {
+      text-align: center;
+      font-size: 32px;
+      margin-bottom: 12px;
+    }
 
-textarea {
-  min-height: 100px;
-  resize: vertical;
-}
+    .from {
+      text-align: center;
+      color: #888;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
 
-.buttons {
-  display: flex;
-  gap: 10px;
-  margin-top: 24px;
-}
+    h1 {
+      text-align: center;
+      font-size: 27px;
+      margin: 0 0 12px;
+    }
 
-button {
-  flex: 1;
-  border: none;
-  border-radius: 13px;
-  padding: 14px 12px;
-  font-size: 15px;
-  cursor: pointer;
-  font-family: inherit;
-}
+    .subtitle {
+      text-align: center;
+      color: #777;
+      line-height: 1.5;
+      margin-bottom: 28px;
+    }
 
-.accept {
-  background: #242424;
-  color: white;
-}
+    label {
+      display: block;
+      margin: 16px 0 7px;
+      font-size: 14px;
+      color: #555;
+    }
 
-.decline {
-  background: #f0efed;
-  color: #333;
-}
+    input,
+    select,
+    textarea {
+      width: 100%;
 
-.message {
-  text-align: center;
-  margin-top: 24px;
-  padding: 18px;
-  border-radius: 14px;
-  background: #f7f5f2;
-  line-height: 1.6;
-}
+      border: 1px solid #ddd;
+      border-radius: 12px;
 
-.hidden {
-  display: none;
-}
+      padding: 13px;
 
-.small {
-  text-align: center;
-  color: #999;
-  font-size: 12px;
-  margin-top: 20px;
-}
-</style>
+      font-size: 16px;
+      font-family: inherit;
+
+      background: white;
+      color: #222;
+
+      outline: none;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: #999;
+    }
+
+    textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    button {
+      flex: 1;
+
+      border: none;
+      border-radius: 13px;
+
+      padding: 14px 10px;
+
+      font-size: 15px;
+      font-family: inherit;
+
+      cursor: pointer;
+    }
+
+    .yes {
+      background: #222;
+      color: white;
+    }
+
+    .no {
+      background: #eeeeec;
+      color: #333;
+    }
+
+    button:active {
+      transform: scale(0.98);
+    }
+
+    .result {
+      margin-top: 22px;
+
+      padding: 18px;
+
+      border-radius: 15px;
+
+      background: #f6f4f1;
+
+      text-align: center;
+      line-height: 1.7;
+
+      display: none;
+    }
+
+    .bottom {
+      margin-top: 20px;
+
+      text-align: center;
+
+      font-size: 12px;
+      color: #999;
+    }
+  </style>
 </head>
 
 <body>
 
-<div class="card">
+  <div class="card">
 
-  <div class="heart">♡</div>
+    <div class="heart">♡</div>
 
-  <div class="from">от Диера</div>
+    <div class="from">от Диера</div>
 
-  <h1>Есть одно предложение</h1>
+    <h1>Есть одно предложение</h1>
 
-  <div class="subtitle">
-    Выбери день и время — остальное обсудим 🙂
+    <div class="subtitle">
+      Выбери день и время — остальное обсудим 🙂
+    </div>
+
+
+    <label for="date">Дата</label>
+
+    <input
+      type="date"
+      id="date"
+    >
+
+
+    <label for="time">Время</label>
+
+    <input
+      type="time"
+      id="time"
+    >
+
+
+    <label for="place">Куда</label>
+
+    <select id="place">
+
+      <option>
+        Прогуляться в парке
+      </option>
+
+      <option>
+        Погулять по городу
+      </option>
+
+      <option>
+        Предложи своё место
+      </option>
+
+    </select>
+
+
+    <label for="note">
+      Если хочешь, можешь что-нибудь написать
+    </label>
+
+    <textarea
+      id="note"
+      placeholder="Например: где встретиться..."
+    ></textarea>
+
+
+    <div class="buttons">
+
+      <button
+        class="yes"
+        onclick="agree()"
+      >
+        Договорились ♡
+      </button>
+
+      <button
+        class="no"
+        onclick="decline()"
+      >
+        Не получится
+      </button>
+
+    </div>
+
+
+    <div
+      id="result"
+      class="result"
+    ></div>
+
+
+    <div class="bottom">
+      Если планы изменятся — ничего страшного, можно договориться иначе.
+    </div>
+
   </div>
 
-  <label for="date">Дата</label>
-  <input type="date" id="date">
 
-  <label for="time">Время</label>
-  <input type="time" id="time">
+  <script>
 
-  <label for="place">Куда</label>
-  <select id="place">
-    <option value="Прогуляться в парке">Прогуляться в парке</option>
-    <option value="Просто погулять по городу">Просто погулять по городу</option>
-    <option value="Предложи своё место">Предложи своё место</option>
-  </select>
+    function agree() {
 
-  <label for="note">Если хочешь, можешь что-нибудь написать</label>
-  <textarea
-    id="note"
-    placeholder="Например: где встретиться..."
-  ></textarea>
+      const date =
+        document.getElementById("date").value;
 
-  <div class="buttons">
-    <button class="accept" onclick="agree()">
-      Договорились ♡
-    </button>
+      const time =
+        document.getElementById("time").value;
 
-    <button class="decline" onclick="decline()">
-      Не получится
-    </button>
-  </div>
+      const place =
+        document.getElementById("place").value;
 
-  <div id="result" class="message hidden"></div>
+      const note =
+        document.getElementById("note").value;
 
-  <div class="small">
-    Если планы изменятся — ничего страшного, можно договориться иначе.
-  </div>
 
-</div>
+      if (!date || !time) {
 
-<script>
+        alert("Выбери дату и время 🙂");
 
-// URL твоего Cloudflare Worker
-const WORKER_URL =
-  "https://orange-snowflake-dec2.johnmacolister.workers.dev/";
+        return;
+      }
 
-async function agree() {
 
-  const date = document.getElementById("date").value;
-  const time = document.getElementById("time").value;
-  const place = document.getElementById("place").value;
-  const note = document.getElementById("note").value;
+      const result =
+        document.getElementById("result");
 
-  if (!date || !time) {
-    alert("Выбери дату и время 🙂");
-    return;
-  }
 
-  const button = document.querySelector(".accept");
-  button.disabled = true;
-  button.textContent = "Секунду...";
+      result.style.display = "block";
 
-  try {
 
-    const response = await fetch(WORKER_URL, {
-      method: "POST",
+      result.innerHTML =
+        "<strong>Договорились ♡</strong><br><br>" +
 
-      headers: {
-        "Content-Type": "application/json"
-      },
+        "📅 " + formatDate(date) + "<br>" +
 
-      body: JSON.stringify({
-        date: date,
-        time: time,
-        place: place,
-        note: note
-      })
-    });
+        "🕐 " + time + "<br>" +
 
-    if (!response.ok) {
-      throw new Error("Worker error");
+        "📍 " + escapeHTML(place) +
+
+        (
+          note
+            ? "<br><br>💬 " + escapeHTML(note)
+            : ""
+        );
     }
 
-    const result = document.getElementById("result");
 
-    result.classList.remove("hidden");
+    function decline() {
 
-    result.innerHTML =
-      "Договорились ♡<br><br>" +
-      "📅 " + date + "<br>" +
-      "🕐 " + time + "<br>" +
-      "📍 " + place +
-      (note ? "<br><br>💬 " + escapeHTML(note) : "");
+      const result =
+        document.getElementById("result");
 
-    button.textContent = "Готово ♡";
 
-  } catch (error) {
+      result.style.display = "block";
 
-    button.disabled = false;
-    button.textContent = "Договорились ♡";
 
-    alert(
-      "Не удалось отправить подтверждение. " +
-      "Попробуй ещё раз."
-    );
-  }
-}
+      result.innerHTML =
+        "<strong>Понял 🙂</strong><br><br>" +
 
-function decline() {
+        "Ничего страшного. Если захочешь — " +
 
-  const result = document.getElementById("result");
+        "можешь предложить другой день.";
+    }
 
-  result.classList.remove("hidden");
 
-  result.innerHTML =
-    "Понял 🙂<br><br>" +
-    "Ничего страшного. Если захочешь — " +
-    "можешь предложить другой день.";
-}
+    function formatDate(date) {
 
-function escapeHTML(text) {
+      const parts =
+        date.split("-");
 
-  const div = document.createElement("div");
-  div.textContent = text;
-  return div.innerHTML;
-}
+      return (
+        parts[2] +
+        "." +
+        parts[1] +
+        "." +
+        parts[0]
+      );
+    }
 
-</script>
+
+    function escapeHTML(text) {
+
+      const div =
+        document.createElement("div");
+
+      div.textContent = text;
+
+      return div.innerHTML;
+    }
+
+  </script>
 
 </body>
 </html>
