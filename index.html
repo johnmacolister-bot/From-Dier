@@ -255,69 +255,41 @@
   <script>
 
     function agree() {
+  const date = document.getElementById("date").value;
+  const time = document.getElementById("time").value;
+  const place = document.getElementById("place").value;
+  const note = document.getElementById("note").value;
 
-      const date =
-        document.getElementById("date").value;
+  if (!date || !time) {
+    alert("Выбери дату и время");
+    return;
+  }
 
-      const time =
-        document.getElementById("time").value;
+  fetch("https://curly-butterfly-4f68.johnmacolister.workers.dev/", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      date: formatDate(date),
+      time: time,
+      place: place,
+      note: note
+    })
+  });
 
-      const place =
-        document.getElementById("place").value;
+  const result = document.getElementById("result");
 
-      const note =
-        document.getElementById("note").value;
+  result.style.display = "block";
 
-
-      if (!date || !time) {
-
-        alert("Выбери дату и время 🙂");
-
-        return;
-      }
-
-
-      const result =
-        document.getElementById("result");
-
-
-      result.style.display = "block";
-
-
-      result.innerHTML =
-        "<strong>Договорились ♡</strong><br><br>" +
-
-        "📅 " + formatDate(date) + "<br>" +
-
-        "🕐 " + time + "<br>" +
-
-        "📍 " + escapeHTML(place) +
-
-        (
-          note
-            ? "<br><br>💬 " + escapeHTML(note)
-            : ""
-        );
+  result.innerHTML =
+    "Договорились ♡<br>" +
+    formatDate(date) +
+    " в " +
+    time +
+    "<br>" +
+    place;
     }
-
-
-    function decline() {
-
-      const result =
-        document.getElementById("result");
-
-
-      result.style.display = "block";
-
-
-      result.innerHTML =
-        "<strong>Понял 🙂</strong><br><br>" +
-
-        "Ничего страшного. Если захочешь — " +
-
-        "можешь предложить другой день.";
-    }
-
 
     function formatDate(date) {
 
